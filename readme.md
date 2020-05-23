@@ -8,4 +8,4 @@ and Run below Command:
 then Start Server using below command:
 > npm start
 
-[Postman APIs Collection](https://documenter.getpostman.com/view/)
+[Postman APIs Collection](https://documenter.getpostman.com/view/2773498/Szt8eVZi?version=latest)
