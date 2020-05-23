@@ -1,15 +1,15 @@
 exports.loginSchema = {
   "type": "object",
   "required": [
-    "email",
+    "username",
     "password",
   ],
   "properties": {
-    "email": {
+    "username": {
       "type": "string",
-      "maxLength": 150,
-      "format": "email",
-      "errorMessage": "please provide me with valid email!"
+      "maxLength": 255,
+      "minLength": 3,
+      "errorMessage": "please provide me with valid username!"
     },
     "password": {
       "type": "string",

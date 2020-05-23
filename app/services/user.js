@@ -15,12 +15,12 @@ async function getUserByEmail(email) {
 };
 exports.getUserByEmail = getUserByEmail;
 
-async function getUserByUsername(username) {
+async function getByUsername(username) {
   const user = await db.user.findOne({ where: { username }, raw: true });
   if(!user) return { err: `User with username ${username} is not found`, status: 404 };
   return { user };
 };
-exports.getUserByUsername = getUserByUsername;
+exports.getByUsername = getByUsername;
 
 async function getUserByUsername(username) {
   const user = await db.user.findOne({
@@ -38,7 +38,7 @@ async function getUserByUsername(username) {
     isUniqueUsername: true
   };
 };
-exports.getUserByEmail = getUserByEmail;
+exports.getUserByUsername = getUserByUsername;
 
 exports.registerUser = async reqBody => {
   const { err, user} = await getUserByEmail(reqBody.email);
@@ -53,13 +53,13 @@ exports.registerUser = async reqBody => {
 
   reqBody.password = await hashPassword(reqBody.password);
   const createdUser = await db.user.create(reqBody);
-  console.log(createdUser.dataValues)
   delete createdUser.dataValues.password;
   return { createdUser };
 }
 
+
 exports.login = async (reqBody) => {
-  const { err, user, status } = await getUserByEmail(reqBody.email);
+  const { err, user, status } = await getByUsername(reqBody.username);
   if(err) return { err , status };
   const validPassword = await verifyPassword(reqBody.password, user.password);
   if(!validPassword) return { err: 'password is wrong!', status: 406 };
