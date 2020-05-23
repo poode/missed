@@ -1,0 +1,9 @@
+node_modules
+.env
+.vscode-janus-debug
+.history
+.vscode
+uploads/images/*.jpeg
+uploads/images/*.jpg
+uploads/images/*.gif
+uploads/images/*.png

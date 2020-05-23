@@ -1,0 +1,50 @@
+{
+  "name": "missed-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:migrate:undo:all": "sequelize db:migrate:undo:all",
+    "db:seed:all": "sequelize db:seed:all",
+    "db:seed:undo": "sequelize db:seed:undo",
+    "db:seed:undo:all": "sequelize db:seed:undo:all",
+    "db:create": "sequelize db:create",
+    "postinstall": "npm run db:create && npm run db:migrate && npm run db:seed:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^6.12.0",
+    "ajv-errors": "^1.0.1",
+    "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "npmlog": "^4.1.2",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-facebook-token": "^3.3.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-token": "^0.1.2",
+    "passport-jwt": "^4.0.0",
+    "randomatic": "^3.1.1",
+    "sequelize": "^5.21.5",
+    "swagger-jsdoc": "^4.0.0",
+    "trim-request": "^1.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "sequelize-cli": "^5.5.1"
+  }
+}
