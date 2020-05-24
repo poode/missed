@@ -66,7 +66,6 @@ exports.registerUser = async reqBody => {
   return { createdUser };
 }
 
-
 exports.login = async (reqBody) => {
   const { err, user, status } = await getByUsername(reqBody.username);
   if(err) return { err , status };

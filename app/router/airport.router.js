@@ -7,7 +7,7 @@ const {
   addAirportSchema,
   updateAirportSchema,
   deleteAirportSchema,
-} = require('../RequestSchemaList');
+} = require('../schemaValidation');
 
 const {
   self,

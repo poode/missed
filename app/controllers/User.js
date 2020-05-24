@@ -7,7 +7,7 @@ const {
   socialLogin,
   updateUserProfile,
   getUserProfile,
-} = require('../services/user');
+} = require('../services/user.service');
 const { ServerError } = require('../../app/util');
 
 module.exports = new class UserController {

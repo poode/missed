@@ -8,7 +8,7 @@ const {
   loginSchema,
   changePasswordSchema,
   updateUserProfileSchema
-} = require('../RequestSchemaList');
+} = require('../schemaValidation');
 
 const {
   self,

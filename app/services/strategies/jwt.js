@@ -1,7 +1,7 @@
 const { Strategy } = require('passport-jwt');
 
 const { ServerError } = require('../../../config/constant')
-const { getUserById } = require('../user');
+const { getUserById } = require('../user.service');
 
 const JWTStrategy = Strategy;
 
