@@ -1,4 +1,4 @@
-exports.registerUserSchema = {
+module.exports = {
     "type": "object",
     "required": [
       "password",
@@ -21,7 +21,7 @@ exports.registerUserSchema = {
       },
       "airportId": {
         "type": "number",
-        "min": 1,
+        "minimum": 1,
         "errorMessage": "please provide me with valid airportId!"
       },
       "password": {

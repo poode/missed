@@ -1,4 +1,4 @@
-exports.updateUserProfileSchema = {
+module.exports = {
   "type": "object",
   "required": [
     "email",
