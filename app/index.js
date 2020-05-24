@@ -6,14 +6,16 @@ const path = require('path');
 const morgan = require('morgan');
 
 const { ServerError } = require('../app/util');
+const { IMAGE_STORAGE } = require('../config/constant');
 
 const { userRouter } = require('./router/user');
+const { airportRouter } = require('./router/airport.router');
 
 const app = express();
 app.use(passport.initialize());
 app.use(cors());
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev': 'tiny'));
-// app.use(`/${IMAGE_STORAGE}`,express.static(path.resolve(`./${IMAGE_STORAGE}`)));
+app.use(`/${IMAGE_STORAGE}`,express.static(path.resolve(`./${IMAGE_STORAGE}`)));
 app.use(express.json());
 
 app.use(trimRequest.all);
@@ -23,6 +25,7 @@ app.get('/healthcheck', (req, res, next) => {
 });
 
 app.use('/users', userRouter);
+app.use('/airport', airportRouter);
 
 // 404 handler
 app.use('*', (req, res, next) => {

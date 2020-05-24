@@ -8,10 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      email: {
-        type: Sequelize.STRING(255),
-        unique: true,
+      airportId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'airports',
+          key: 'id',
+        },
       },
       password: {
         type: Sequelize.STRING(500),

@@ -12,9 +12,9 @@ module.exports = {
       */
       return queryInterface.bulkInsert('users', [{
         name: 'Administrator',
-        email: 'admin@admin.com',
         role: 'admin',
         username: 'admin',
+        airportId: 1,
         password: await hashPassword(process.env.ADMIN_PASSWORD),
         createdAt: new Date(),
         updatedAt: new Date(),

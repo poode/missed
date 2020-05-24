@@ -1,22 +1,28 @@
 exports.registerUserSchema = {
     "type": "object",
     "required": [
-      "email",
       "password",
-      "username"
+      "username",
+      "name",
+      "airportId"
     ],
     "properties": {
-      "email": {
-        "type": "string",
-        "maxLength": 150,
-        "format": "email",
-        "errorMessage": "please provide me with valid email!"
-      },
       "username": {
         "type": "string",
         "maxLength": 255,
         "minLength": 3,
         "errorMessage": "please provide me with valid username!"
+      },
+      "name": {
+        "type": "string",
+        "maxLength": 255,
+        "minLength": 3,
+        "errorMessage": "please provide me with valid name!"
+      },
+      "airportId": {
+        "type": "number",
+        "min": 1,
+        "errorMessage": "please provide me with valid airportId!"
       },
       "password": {
         "type": "string",

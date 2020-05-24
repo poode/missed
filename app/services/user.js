@@ -16,9 +16,16 @@ async function getUserByEmail(email) {
 exports.getUserByEmail = getUserByEmail;
 
 async function getByUsername(username) {
-  const user = await db.user.findOne({ where: { username }, raw: true });
+  const user = await db.user.findOne({ 
+    where: { username }, 
+    include: [{
+      model: db.airport,
+      attributes: ['name'],
+    }],
+    attributes: ['name', 'username', 'id', 'password']
+  });
   if(!user) return { err: `User with username ${username} is not found`, status: 404 };
-  return { user };
+  return { user: user.toJSON() };
 };
 exports.getByUsername = getByUsername;
 
@@ -40,16 +47,18 @@ async function getUserByUsername(username) {
 };
 exports.getUserByUsername = getUserByUsername;
 
+const getAirportById = async (id) => {
+  const airport = await db.airport.findOne({ where: { id }, raw: true });
+  if(!airport) return { err: `Airport with ID ${id} is not found`, status: 404 };
+  return { airport };
+}
+
 exports.registerUser = async reqBody => {
-  const { err, user} = await getUserByEmail(reqBody.email);
-  if (user) {
-    return { err: `User with email ${reqBody.email} is already found`, status: 409 };
-  }
+  const { err, status } = await  getAirportById(reqBody.airportId);
+  if(err) return { err, status };
 
   const duplicated = await getUserByUsername(reqBody.username);
-  if (duplicated.err) {
-    return { err, status };
-  }
+  if (duplicated.err) return { err, status };
 
   reqBody.password = await hashPassword(reqBody.password);
   const createdUser = await db.user.create(reqBody);
