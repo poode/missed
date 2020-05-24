@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const { ServerError } = require('../app/util');
 const { IMAGE_STORAGE } = require('../config/constant');
 
-const { userRouter } = require('./router/user');
+const { userRouter } = require('./router/user.router');
 const { airportRouter } = require('./router/airport.router');
 
 const app = express();
