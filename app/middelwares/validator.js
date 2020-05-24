@@ -5,7 +5,13 @@ require('ajv-errors')(ajv /*, {singleError: true} */);
 
 const validate = schema => {
   return (req, res, next) => {
-    const requestPayload = (req.method === 'POST' || req.method === 'PUT') ? req.body : req.method === 'GET' ? req.query : {};
+    let requestPayload = {};
+    if(req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE') {
+      requestPayload = req.body
+    } 
+    if(req.method === 'GET') {
+      requestPayload = req.query || req.params;
+    }
     const validate = ajv.compile(schema);
     const valid = validate(requestPayload);
     if (valid) {

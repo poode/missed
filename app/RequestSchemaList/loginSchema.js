@@ -1,4 +1,4 @@
-exports.loginSchema = {
+module.exports = {
   "type": "object",
   "required": [
     "username",

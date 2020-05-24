@@ -3,10 +3,12 @@ const router = require('express-promise-router')();
 const { jwt } = require('../services/strategies');
 const { validate } = require('../middelwares/validator');
 
-const { registerUserSchema } = require('../RequestSchemaList/registerUser');
-const { loginSchema } = require('../RequestSchemaList/loginSchema');
-const { changePasswordSchema } = require('../RequestSchemaList/changePasswordSchema');
-const { updateUserProfileSchema } = require('../RequestSchemaList/updateUserProfileSchema');
+const {
+  registerUserSchema,
+  loginSchema,
+  changePasswordSchema,
+  updateUserProfileSchema
+} = require('../RequestSchemaList');
 
 const {
   self,

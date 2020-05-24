@@ -1,4 +1,4 @@
-exports.changePasswordSchema = {
+module.exports = {
   "type": "object",
   "required": [
     "oldPassword",

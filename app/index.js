@@ -25,7 +25,7 @@ app.get('/healthcheck', (req, res, next) => {
 });
 
 app.use('/users', userRouter);
-app.use('/airport', airportRouter);
+app.use('/airports', airportRouter);
 
 // 404 handler
 app.use('*', (req, res, next) => {
