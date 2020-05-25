@@ -3,30 +3,30 @@ const {
   add,
   update,
   deleteAny,
-} = require('../services/location.service');
+} = require('../services/color.service');
 const { ServerError } = require('../../app/util');
 
-module.exports = new class LocationController {
+module.exports = new class ColorController {
   self = this;
  
-  async getLocationList(req, res, next) {
-    const { locationList } = await getAll();
-    res.json({ locationList });
+  async getColorList(req, res, next) {
+    const { colorList } = await getAll();
+    res.json({ colorList });
   }
 
-  async addLocation(req, res, next) {
-    const { err, status, location } = await add(req);
+  async addColor(req, res, next) {
+    const { err, status, color } = await add(req);
     if(err) return next(new ServerError(err, status));
-    res.json({ location });
+    res.json({ color });
   }
 
-  async updateLocation(req, res, next) {
+  async updateColor(req, res, next) {
     const { err, status, message } = await update(req);
     if(err) return next(new ServerError(err, status));
     res.json({ message });
   }
 
-  async deleteLocation(req, res, next) {
+  async deleteColor(req, res, next) {
     const { err, status, message } = await deleteAny(req);
     if(err) return next(new ServerError(err, status));
     res.json({ message });
