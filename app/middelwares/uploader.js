@@ -6,7 +6,7 @@ const {
   IMAGE_SIZE,
   IMAGE_STORAGE,
   IMAGE_ACCEPTED,
-} = require('../../config/serverConfig')
+} = require('../../config/constant');
 
 const storage = multer.diskStorage({
   destination(req, file, callback) {
@@ -23,7 +23,7 @@ const upload = multer({
   fileFilter(req, file, callback) {
     const isAcceptedSize = Number(req.get('content-length')) <= Number(IMAGE_SIZE);
     if (!isAcceptedSize) {
-      return callback({ message: 'File uploaded is too large, accepts only 10 M max size', status: 415 });
+      return callback({ message: 'File uploaded is too large, accepts only 30M max size', status: 415 });
     }
 
     const filetypes = IMAGE_ACCEPTED;

@@ -10,7 +10,7 @@ module.exports = new class modelController {
   self = this;
  
   async getModelList(req, res, next) {
-    const { modelList } = await getAll();
+    const { modelList } = await getAll(req);
     res.json({ modelList });
   }
 

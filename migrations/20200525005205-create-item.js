@@ -14,7 +14,7 @@ module.exports = {
       },
       desc: {
         type: Sequelize.STRING(5000),
-        allowNull: false,
+        allowNull: true,
       },
       photo: {
         type: Sequelize.STRING(1000),

@@ -6,6 +6,7 @@ const {
   addModelSchema,
   updateModelSchema,
   deleteModelSchema,
+  listModelSchema,
 } = require('../schemaValidation');
 
 const {
@@ -16,7 +17,7 @@ const {
   deleteModel,
 } = require('../controllers/Model');
 
-router.get('/list', jwt(), getModelList);
+router.get('/list', jwt(),validate(listModelSchema) , getModelList);
 router.post('/', jwt(), validate(addModelSchema), addModel);
 router.put('/', jwt(), validate(updateModelSchema), updateModel);
 router.delete('/', jwt(), validate(deleteModelSchema), deleteModel);

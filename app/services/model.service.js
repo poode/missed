@@ -17,8 +17,8 @@ async function getOneByAny (object) {
   return { model: model.toJSON() };
 }
 
-exports.getAll = async () => {
-  const modelList = await db.model.findAll({ attributes: ['id', 'name']});
+exports.getAll = async ({ query }) => {
+  const modelList = await db.model.findAll({ where: { categoryId: query.categoryId }, attributes: ['id', 'name']});
   return { modelList };
 }
 
