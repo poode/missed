@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   color.associate = function(models) {
     // associations can be defined here
+    color.hasMany(models.item);
+
   };
   return color;
 };

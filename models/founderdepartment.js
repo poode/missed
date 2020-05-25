@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   founderDepartment.associate = function(models) {
     // associations can be defined here
+    founderDepartment.hasMany(models.item);
   };
   return founderDepartment;
 };

@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   founderTitle.associate = function(models) {
     // associations can be defined here
+    founderTitle.hasMany(models.item);
+
   };
   return founderTitle;
 };

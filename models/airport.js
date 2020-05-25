@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   airport.associate = function(models) {
     // associations can be defined here
     airport.hasMany(models.user);
+    airport.hasMany(models.item);
   };
   return airport;
 };

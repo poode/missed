@@ -110,6 +110,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   item.associate = function(models) {
     // associations can be defined here
+    item.belongsTo(models.category);
+    item.belongsTo(models.model);
+    item.belongsTo(models.location);
+    item.belongsTo(models.founderTitle);
+    item.belongsTo(models.founderDepartment);
+    item.belongsTo(models.color);
+    item.belongsTo(models.airport);
+    item.belongsTo(models.user);
   };
   return item;
 };
