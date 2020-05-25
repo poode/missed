@@ -31,7 +31,7 @@ exports.add = async ({ body }) => {
 
 exports.update = async ({ body }) => {
   const found = await getOneByAny({ id: body.id });
-  if(!found.airport) return { err: `Airport with name ${body.name} is not found!`, status: 404 };
+  if(!found.airport) return { err: `Airport with id ${body.id} is not found!`, status: 404 };
   const nameFound = await getOneByAny({ name: body.name });
   if(nameFound.airport && nameFound.airport.id !== body.id) return { err: `Airport with name ${body.name} is found please use another name!`, status: 400 };
   await db.airport.update(body, { where: { id: body.id } });

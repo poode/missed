@@ -31,7 +31,7 @@ exports.add = async ({ body }) => {
 
 exports.update = async ({ body }) => {
   const found = await getOneByAny({ id: body.id });
-  if(!found.color) return { err: `color with name ${body.name} is not found!`, status: 404 };
+  if(!found.color) return { err: `color with id ${body.id} is not found!`, status: 404 };
   const nameFound = await getOneByAny({ name: body.name });
   if(nameFound.color && nameFound.color.id !== body.id) return { err: `color with name ${body.name} is found please use another name!`, status: 400 };
   await db.color.update(body, { where: { id: body.id } });

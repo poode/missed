@@ -31,7 +31,7 @@ exports.add = async ({ body }) => {
 
 exports.update = async ({ body }) => {
   const found = await getOneByAny({ id: body.id });
-  if(!found.location) return { err: `location with name ${body.name} is not found!`, status: 404 };
+  if(!found.location) return { err: `location with id ${body.id} is not found!`, status: 404 };
   const nameFound = await getOneByAny({ name: body.name });
   if(nameFound.location && nameFound.location.id !== body.id) return { err: `location with name ${body.name} is found please use another name!`, status: 400 };
   await db.location.update(body, { where: { id: body.id } });

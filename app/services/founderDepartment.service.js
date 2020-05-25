@@ -31,7 +31,7 @@ exports.add = async ({ body }) => {
 
 exports.update = async ({ body }) => {
   const found = await getOneByAny({ id: body.id });
-  if(!found.founderDepartment) return { err: `founderDepartment with name ${body.name} is not found!`, status: 404 };
+  if(!found.founderDepartment) return { err: `founderDepartment with id ${body.id} is not found!`, status: 404 };
   const nameFound = await getOneByAny({ name: body.name });
   if(nameFound.founderDepartment && nameFound.founderDepartment.id !== body.id) return { err: `founderDepartment with name ${body.name} is found please use another name!`, status: 400 };
   await db.founderDepartment.update(body, { where: { id: body.id } });

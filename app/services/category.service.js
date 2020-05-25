@@ -31,7 +31,7 @@ exports.add = async ({ body }) => {
 
 exports.update = async ({ body }) => {
   const found = await getOneByAny({ id: body.id });
-  if(!found.category) return { err: `category with name ${body.name} is not found!`, status: 404 };
+  if(!found.category) return { err: `category with id ${body.id} is not found!`, status: 404 };
   const nameFound = await getOneByAny({ name: body.name });
   if(nameFound.category && nameFound.category.id !== body.id) return { err: `category with name ${body.name} is found please use another name!`, status: 400 };
   await db.category.update(body, { where: { id: body.id } });

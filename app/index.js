@@ -14,6 +14,7 @@ const { categoryRouter } = require('./router/category.router');
 const { locationRouter } = require('./router/location.router');
 const { colorRouter } = require('./router/color.router');
 const { founderDepartmentRouter } = require('./router/founderDepartment.router');
+const { founderTitleRouter } = require('./router/founderTitle.router');
 
 const app = express();
 app.use(passport.initialize());
@@ -34,6 +35,7 @@ app.use('/categories', categoryRouter);
 app.use('/locations', locationRouter);
 app.use('/colors', colorRouter);
 app.use('/finderDepartments', founderDepartmentRouter);
+app.use('/finderTitles', founderTitleRouter);
 
 // 404 handler
 app.use('*', (req, res, next) => {
