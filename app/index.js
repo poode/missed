@@ -11,6 +11,7 @@ const { IMAGE_STORAGE } = require('../config/constant');
 const { userRouter } = require('./router/user.router');
 const { airportRouter } = require('./router/airport.router');
 const { categoryRouter } = require('./router/category.router');
+const { locationRouter } = require('./router/location.router');
 
 const app = express();
 app.use(passport.initialize());
@@ -28,6 +29,7 @@ app.get('/healthcheck', (req, res, next) => {
 app.use('/users', userRouter);
 app.use('/airports', airportRouter);
 app.use('/categories', categoryRouter);
+app.use('/locations', locationRouter);
 
 // 404 handler
 app.use('*', (req, res, next) => {

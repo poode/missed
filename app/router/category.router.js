@@ -2,7 +2,6 @@ const router = require('express-promise-router')();
 
 const { jwt } = require('../services/strategies');
 const { validate } = require('../middelwares/validator');
-console.log(require('../schemaValidation'));
 const {
   addSchema,
   updateSchema,
