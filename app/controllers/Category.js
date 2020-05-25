@@ -3,30 +3,30 @@ const {
   add,
   update,
   deleteAny,
-} = require('../services/airport.service');
+} = require('../services/category.service');
 const { ServerError } = require('../../app/util');
 
-module.exports = new class AirportController {
+module.exports = new class CategoryController {
   self = this;
  
-  async getAirportList(req, res, next) {
-    const { airportList } = await getAll();
-    res.json({ airportList });
+  async getCategoryList(req, res, next) {
+    const { categoryList } = await getAll();
+    res.json({ categoryList });
   }
 
-  async addAirport(req, res, next) {
-    const { err, status, airport } = await add(req);
+  async addCategory(req, res, next) {
+    const { err, status, category } = await add(req);
     if(err) return next(new ServerError(err, status));
-    res.json({ airport });
+    res.json({ category });
   }
 
-  async updateAirport(req, res, next) {
+  async updateCategory(req, res, next) {
     const { err, status, message } = await update(req);
     if(err) return next(new ServerError(err, status));
     res.json({ message });
   }
 
-  async deleteAirport(req, res, next) {
+  async deleteCategory(req, res, next) {
     const { err, status, message } = await deleteAny(req);
     if(err) return next(new ServerError(err, status));
     res.json({ message });

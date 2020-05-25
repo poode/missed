@@ -4,9 +4,9 @@ const { jwt } = require('../services/strategies');
 const { validate } = require('../middelwares/validator');
 
 const {
-  addAirportSchema,
-  updateAirportSchema,
-  deleteAirportSchema,
+  addSchema,
+  updateSchema,
+  deleteSchema,
 } = require('../schemaValidation');
 
 const {
@@ -18,8 +18,8 @@ const {
 } = require('../controllers/Airport');
 
 router.get('/list', jwt(), getAirportList);
-router.post('/', jwt(), validate(addAirportSchema), addAirport);
-router.put('/', jwt(), validate(updateAirportSchema), updateAirport);
-router.delete('/', jwt(), validate(deleteAirportSchema), deleteAirport);
+router.post('/', jwt(), validate(addSchema), addAirport);
+router.put('/', jwt(), validate(updateSchema), updateAirport);
+router.delete('/', jwt(), validate(deleteSchema), deleteAirport);
 
 exports.airportRouter = router;
