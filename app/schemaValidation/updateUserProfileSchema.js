@@ -1,17 +1,11 @@
 module.exports = {
   "type": "object",
   "required": [
-    "email",
     "username",
     "name",
+    "airportId"
   ],
   "properties": {
-    "email": {
-      "type": "string",
-      "maxLength": 150,
-      "format": "email",
-      "errorMessage": "please provide me with valid email!"
-    },
     "username": {
       "type": "string",
       "maxLength": 255,
@@ -23,6 +17,11 @@ module.exports = {
       "minLength": 2,
       "maxLength": 255,
       "errorMessage": "please provide me with name!"
+    },
+    "airportId": {
+      "type": "number",
+      "minimum": 1,
+      "errorMessage": "please provide me with a valid airportId!"
     }
   }
 }

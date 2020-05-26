@@ -109,10 +109,13 @@ exports.changePassword = async ({ user, body }) => {
 }
 
 exports.updateUserProfile = async ({ user, body }) => {
-  const emailFound = await getUserByEmail(body.email);
+  const { err, status } = await  getAirportById(body.airportId);
+  if(err) return { err, status };
 
-  if(emailFound.user && emailFound.user.id !== user.id) {
-    return { err: `Please use another email as ${body.email} already used`, status: 400 };
+  const userFound = await getUserByUsername(user.username);
+
+  if(userFound.user && userFound.user.id !== user.id) {
+    return { err: `Please use another username as ${body.username} already used`, status: 400 };
   }
   const usernameFound = await getUserByUsername(body.username);
 
@@ -132,7 +135,7 @@ exports.updateUserProfile = async ({ user, body }) => {
 }
 
 exports.getUserProfile = async ({ user }) => {
-  const found = await getUserByEmail(user.email);
+  const found = await getByUsername(user.username);
   if(found.err) return { err: found.err, status: found.status };
   delete found.user.password;
   return { user: found.user };
