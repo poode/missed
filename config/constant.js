@@ -6,7 +6,7 @@ const serverConfig = {
   IMAGE_MAX_COUNT: process.env.IMAGE_MAX_COUNT,
   IMAGE_STORAGE: 'uploads/images/',
   IMAGE_SIZE: 3000000,
-  IMAGE_ACCEPTED: /jpeg|jpg|png|gif/,
+  IMAGE_ACCEPTED: /jpeg|jpg|png|gif|pdf/,
 }
 
 module.exports = serverConfig;

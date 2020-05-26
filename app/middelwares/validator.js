@@ -18,7 +18,7 @@ const validate = schema => {
       return next();
     }
     // string with all errors and data paths
-    res.status(400).json(validate.errors.map(error => error.params));
+    res.status(400).json(validate.errors.map(error => ({ error: error.params, message: error.message })));
   };
 }
 

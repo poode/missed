@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     desc: {
       type: DataTypes.STRING(5000),
-      allowNull: false,
+      allowNull: true,
     },
     photo: {
       type: DataTypes.STRING(1000),
