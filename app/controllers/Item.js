@@ -59,7 +59,6 @@ module.exports = new class ItemController {
   }
 
   async addItem(req, res, next) {
-    console.log(req)
     const { err, status, item } = await add(req);
     if(err) return next(new ServerError(err, status));
     res.json({ item });
