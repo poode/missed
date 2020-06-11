@@ -20,7 +20,7 @@ async function getByUsername(username) {
     where: { username }, 
     include: [{
       model: db.airport,
-      attributes: ['name'],
+      attributes: ['name', 'id'],
     }],
     attributes: ['name', 'username', 'id', 'password']
   });
