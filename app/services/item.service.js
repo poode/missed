@@ -78,18 +78,23 @@ exports.deleteAny = async ({ body }) => {
   return { message: 'Success' };
 }
 
-exports.handOver = async ({ body, files, user, hostname }) => {
+// body should has item id
+const handOver = async ({ body, files, user, hostname }) => {
+  console.log('>>>>>>', body)
+  // id is item id
   if(body && !body.id || !parseInt(body.id) || !Number(body.id)) return { err: 'Please provide me with a valid item ID', status: 400 };
   if(!files[0]) return { err: 'Please upload item\'s handover file' , status: 400 };
-  body.handOverPersonFile = `${process.env.SSL && process.env.NODE_ENV === 'production' ? `https://${hostname}` : `http://${hostname}:${process.env.PORT}`}/${files[0].path}`;
+  const handOverPersonFile = `${process.env.SSL && process.env.NODE_ENV === 'production' ? `https://${hostname}` : `http://${hostname}:${process.env.PORT}`}/${files[0].path}`;
   const found = await getOneByAny({ id: body.id });
   if(!found.item) return { err: `item with id ${body.id} is not found!`, status: 404 };
   body.userId = user.id;
   body.airportId = user.airportId;
 
-  await db.item.update(body, { where: { id: body.id } });
+  await db.item.update({ handOverPersonFile , userId: user.id , airportId: user.airportId }, { where: { id: body.id } });
   return { message: 'Success' };
 }
+
+exports.handOver = handOver;
 
 exports.getAll = async ({ query }) => {
   const page = parseInt(query.page);
@@ -685,4 +690,42 @@ exports.getAllWithAirportAndModelAndHandedOver = async ({ query }) => {
   const numberOfPages = Math.ceil(itemList.count/limit);
   itemList.numberOfPages = numberOfPages;
   return { itemList };
+}
+
+exports.handOverMultiItem = async ({ body, files, user, hostname }) => {
+  // check all ids exist or not if one is not exist return err
+  try {
+    const { idList } = body;
+    if(!idList) throw new Error('Please send idList property in the request body');
+    const ids = JSON.parse(JSON.parse(idList));
+    if(!(ids instanceof Array)) throw new Error('Please send stringified array of item\'s ids');
+    const checkAllAreNumbers = ids.every(id => typeof id === 'number');
+    if(!checkAllAreNumbers) throw new Error('Please send stringified array of item\'s ids');
+    if(!files[0]) throw new Error('Please upload item\'s handover file');
+    const validatedIdList = await Promise.all(ids.map(async id => {
+      try {
+        await findOne({ model: db.item, options: { where: { id } } });
+        return { id , check: true};
+      } catch (error) {
+        return { id, check: false };
+      }
+    }));
+
+    const notFoundIdList = validatedIdList.reduce((acc, curr)=> {
+      if(!curr.check) acc.push(curr.id);
+      return acc
+    }, []);
+
+    if(notFoundIdList.length) throw new Error(`One or more ids not in our databases, ids not found => { ${notFoundIdList} }`);
+
+    //make loop to set file in all selected items' ids
+    ids.forEach(async id => {
+      await handOver({ body: { id } , files, user, hostname });
+    });
+
+    return { message: 'success' };
+  } catch (error) {
+    return { err: error.message, status: 400 }
+  }
+  
 }

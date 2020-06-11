@@ -10,6 +10,7 @@ const {
   getAllWithAirportAndCategoryAndHandedOver,
   getAllWithAirportAndModel,
   getAllWithAirportAndModelAndHandedOver,
+  handOverMultiItem,
 } = require('../services/item.service');
 const { ServerError } = require('../../app/util');
 
@@ -82,4 +83,9 @@ module.exports = new class ItemController {
     res.json({ message });
   }
 
+  async handoverMultiItems (req, res, next) {
+    const { err, status, message } = await handOverMultiItem(req);
+    if(err) return next(new ServerError(err, status));
+    res.json({ message });
+  }
 }

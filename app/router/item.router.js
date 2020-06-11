@@ -22,7 +22,8 @@ const {
   getAllWithAirportAndCategory,
   getAllWithAirportAndCategoryAndHandedOver,
   getAllWithAirportAndModel,
-  getAllWithAirportAndModelAndHandedOver
+  getAllWithAirportAndModelAndHandedOver,
+  handoverMultiItems,
 } = require('../controllers/Item');
 
 router.get('/list', jwt(), validate(paginationSchema), getItemList);
@@ -36,5 +37,6 @@ router.post('/', jwt(), upload.array(IMAGE_FIELD, IMAGE_MAX_COUNT), validate(add
 router.put('/', jwt(), validate(addItemSchema), updateItem);
 router.put('/handover', jwt(), upload.array(IMAGE_FIELD, IMAGE_MAX_COUNT), handoverItem);
 router.delete('/', jwt(), validate(deleteSchema), deleteItem);
+router.put('/handover/multi-items', jwt(), upload.array(IMAGE_FIELD, IMAGE_MAX_COUNT), handoverMultiItems);
 
 exports.itemRouter = router;
