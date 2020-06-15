@@ -23,12 +23,12 @@ exports.getAll = async ({ query }) => {
 }
 
 exports.add = async ({ body }) => {
-  const found = await getOneByAny({ name: body.name });
-  if(found.model) return { err: `model with name ${body.name} is found please add another name`, status: 400 };
-
   const category = await db.category.findOne({ where: { id: body.categoryId }});
   if(!category) return { err: `category with id ${body.categoryId} is not found`, status: 404 };
   
+  const found = await getOneByAny({ name: body.name, categoryId: body.categoryId });
+  if(found.model) return { err: `model with name ${body.name} is found please add another name`, status: 400 };
+
   const model = await db.model.create(body);
   return { model };
 }
