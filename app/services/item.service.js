@@ -238,7 +238,10 @@ exports.getAllWithAirport = async ({ query }) => {
       'updatedAt',
     ],
     where: {
-      airportId: query.airportId
+      airportId: query.airportId,
+      createdAt: {
+        [db.Sequelize.Op.between]: [query.from,`${query.to} 23:59:59`]
+      }
     }
   });
   const newRows = itemList.rows.map(album => {
@@ -323,6 +326,9 @@ exports.getAllWithAirportAndHandedOver = async ({ query }) => {
       airportId: query.airportId,
       handOverPersonFile: {
         [db.Sequelize.Op.not]: null,
+      },
+      createdAt: {
+        [db.Sequelize.Op.between]: [query.from,`${query.to} 23:59:59`]
       }
     }
   });
@@ -411,6 +417,9 @@ exports.getAllWithAirportAndCategory = async ({ query }) => {
     where: {
       airportId: query.airportId,
       categoryId: query.categoryId,
+      createdAt: {
+        [db.Sequelize.Op.between]: [query.from,`${query.to} 23:59:59`]
+      }
     }
   });
   const newRows = itemList.rows.map(album => {
@@ -500,6 +509,9 @@ exports.getAllWithAirportAndCategoryAndHandedOver = async ({ query }) => {
       categoryId: query.categoryId,
       handOverPersonFile: {
         [db.Sequelize.Op.not]: null,
+      },
+      createdAt: {
+        [db.Sequelize.Op.between]: [query.from,`${query.to} 23:59:59`]
       }
     }
   });
@@ -588,6 +600,9 @@ exports.getAllWithAirportAndModel = async ({ query }) => {
     where: {
       airportId: query.airportId,
       modelId: query.modelId,
+      createdAt: {
+        [db.Sequelize.Op.between]: [query.from,`${query.to} 23:59:59`]
+      }
     }
   });
   const newRows = itemList.rows.map(album => {
@@ -677,6 +692,9 @@ exports.getAllWithAirportAndModelAndHandedOver = async ({ query }) => {
       modelId: query.modelId,
       handOverPersonFile: {
         [db.Sequelize.Op.not]: null,
+      },
+      createdAt: {
+        [db.Sequelize.Op.between]: [query.from,`${query.to} 23:59:59`]
       }
     }
   });
