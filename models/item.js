@@ -99,14 +99,6 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE
-    }
   }, {});
   item.associate = function(models) {
     // associations can be defined here
