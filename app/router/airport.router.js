@@ -17,7 +17,7 @@ const {
   deleteAirport,
 } = require('../controllers/Airport');
 
-router.get('/list', jwt(), getAirportList);
+router.get('/list', getAirportList);
 router.post('/', jwt(), validate(addSchema), addAirport);
 router.put('/', jwt(), validate(updateSchema), updateAirport);
 router.delete('/', jwt(), validate(deleteSchema), deleteAirport);
