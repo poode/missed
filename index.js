@@ -1,5 +1,17 @@
+const path = require('path');
+const fs = require('fs');
+const https = require('https');
+
 require('dotenv').config();
 const { PORT } = require('./config/constant');
 const { app } = require('./app');
 
-app.listen(PORT, () => console.log(`server is up on ${JSON.parse(process.env.SSL) ? 'https' : 'http'}://localhost:${PORT}`));
+
+const credentials = {
+  key: fs.readFileSync(path.resolve(`${__dirname}/config/ssl/my-api.key`), 'utf8'),
+  cert: fs.readFileSync(path.resolve(`${__dirname}/config/ssl/my-api.crt`), 'utf8'),
+};
+
+const secureServer = https.createServer(credentials, app);
+
+secureServer.listen(PORT, () => console.log(`server is up on ${JSON.parse(process.env.SSL) ? 'https' : 'http'}://localhost:${PORT}`));
