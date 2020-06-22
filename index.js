@@ -8,8 +8,8 @@ const { app } = require('./app');
 
 
 const credentials = {
-  key: fs.readFileSync(path.resolve(`${__dirname}/config/ssl/my-api.key`), 'utf8'),
-  cert: fs.readFileSync(path.resolve(`${__dirname}/config/ssl/my-api.crt`), 'utf8'),
+  key: fs.readFileSync(path.resolve(`${__dirname}/config/ssl/ropsystem.com.key`), 'utf8'),
+  cert: fs.readFileSync(path.resolve(`${__dirname}/config/ssl/ropsystem.com.crt`), 'utf8'),
 };
 
 const secureServer = https.createServer(credentials, app);
