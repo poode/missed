@@ -29,7 +29,7 @@ async function findOne({ model, options }) {
 
 exports.add = async ({ body, files, user, hostname }) => {
   if(!files[0]) return { err: 'Please upload item photo' , status: 400 };
-  body.photo = `${JSON.parse(process.env.SSL) && process.env.NODE_ENV === 'production' ? `https://${hostname}` : `http://${hostname}:${process.env.PORT}`}/${files[0].path}`;
+  body.photo = `${JSON.parse(process.env.SSL) ? `https://${hostname}:${process.env.PORT}` : `http://${hostname}:${process.env.PORT}`}/${files[0].path}`;
   body.userId = user.id;
   body.airportId = user.airportId;
   // search for every related id for the item
@@ -83,7 +83,7 @@ const handOver = async ({ body, files, user, hostname }) => {
   // id is item id
   if(body && !body.id || !parseInt(body.id) || !Number(body.id)) return { err: 'Please provide me with a valid item ID', status: 400 };
   if(!files[0]) return { err: 'Please upload item\'s handover file' , status: 400 };
-  const handOverPersonFile = `${JSON.parse(process.env.SSL) && process.env.NODE_ENV === 'production' ? `https://${hostname}` : `http://${hostname}:${process.env.PORT}`}/${files[0].path}`;
+  const handOverPersonFile = `${JSON.parse(process.env.SSL) ? `https://${hostname}:${process.env.PORT}` : `http://${hostname}:${process.env.PORT}`}/${files[0].path}`;
   const found = await getOneByAny({ id: body.id });
   if(!found.item) return { err: `item with id ${body.id} is not found!`, status: 404 };
   body.userId = user.id;
