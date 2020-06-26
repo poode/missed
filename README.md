@@ -15,7 +15,7 @@
 ## on windows
 
 > docker network create --driver=bridge --subnet=172.16.0.0/24 br0
-> docker run -d  --network br0 -p 3000:3000  --restart-max-attempts backend:v1
+> docker run -d  --network br0 -p 3000:3000  --restart unless-stopped backend:v1
 
 ### Note
   
