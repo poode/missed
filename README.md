@@ -12,6 +12,11 @@
 
 > docker run --network host -d backend:v1
 
+## on windows
+
+> docker network create --driver=bridge --subnet=172.16.0.0/24 br0
+> docker run -d  --network br0 -p 3000:3000  --restart-max-attempts backend:v1
+
 ### Note
   
 * If you need to change app port open `Dockerfile` and change `EXPOSE 3000` to `EXPOSE <YOUR PORT>`
