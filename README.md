@@ -18,6 +18,9 @@
 > docker run -d  --network br0 -p 3000:3000  --restart unless-stopped backend:v1
 
 ### Note
+
+* please if you will use xammp mysql database please give root or any other user full access from any host to allow the application inside docker container accesses the database
+by pressing on privilage > select root user or any user > edit privilage > login information > name host and select any host
   
 * If you need to change app port open `Dockerfile` and change `EXPOSE 3000` to `EXPOSE <YOUR PORT>`
   and open `.env` file and change application port to the same port you will expose in docker container
