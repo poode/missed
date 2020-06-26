@@ -108,10 +108,10 @@ INSERT INTO `colors` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `founderdepartments`
+-- Table structure for table `founderDepartments`
 --
 
-CREATE TABLE `founderdepartments` (
+CREATE TABLE `founderDepartments` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -119,10 +119,10 @@ CREATE TABLE `founderdepartments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `founderdepartments`
+-- Dumping data for table `founderDepartments`
 --
 
-INSERT INTO `founderdepartments` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `founderDepartments` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (2, 'شرطة عمان السلطانيه', '2020-06-14 21:12:45', '2020-06-14 21:12:45'),
 (3, 'شركه مطارات عمان', '2020-06-14 21:13:01', '2020-06-14 21:13:01'),
 (4, 'شركة النبع', '2020-06-14 21:13:10', '2020-06-14 21:13:10'),
@@ -133,10 +133,10 @@ INSERT INTO `founderdepartments` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foundertitles`
+-- Table structure for table `founderTitles`
 --
 
-CREATE TABLE `foundertitles` (
+CREATE TABLE `founderTitles` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -144,10 +144,10 @@ CREATE TABLE `foundertitles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `foundertitles`
+-- Dumping data for table `founderTitles`
 --
 
-INSERT INTO `foundertitles` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `founderTitles` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 (3, 'لواء', '2020-06-14 18:20:19', '2020-06-14 18:20:19'),
 (4, 'شرطي', '2020-06-14 18:21:43', '2020-06-14 18:21:43'),
 (5, 'عريف', '2020-06-14 18:21:53', '2020-06-14 18:21:53'),
@@ -324,18 +324,18 @@ INSERT INTO `models` (`id`, `name`, `categoryId`, `createdAt`, `updatedAt`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sequelizemeta`
+-- Table structure for table `sequelizeMeta`
 --
 
-CREATE TABLE `sequelizemeta` (
+CREATE TABLE `sequelizeMeta` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sequelizemeta`
+-- Dumping data for table `sequelizeMeta`
 --
 
-INSERT INTO `sequelizemeta` (`name`) VALUES
+INSERT INTO `sequelizeMeta` (`name`) VALUES
 ('00000-fix-db-charset.js'),
 ('20200223224429-create-airport.js'),
 ('20200323215555-create-user.js'),
@@ -388,15 +388,15 @@ ALTER TABLE `colors`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `founderdepartments`
+-- Indexes for table `founderDepartments`
 --
-ALTER TABLE `founderdepartments`
+ALTER TABLE `founderDepartments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `foundertitles`
+-- Indexes for table `founderTitles`
 --
-ALTER TABLE `foundertitles`
+ALTER TABLE `founderTitles`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -427,9 +427,9 @@ ALTER TABLE `models`
   ADD KEY `categoryId` (`categoryId`);
 
 --
--- Indexes for table `sequelizemeta`
+-- Indexes for table `sequelizeMeta`
 --
-ALTER TABLE `sequelizemeta`
+ALTER TABLE `sequelizeMeta`
   ADD PRIMARY KEY (`name`),
   ADD UNIQUE KEY `name` (`name`);
 
@@ -464,15 +464,15 @@ ALTER TABLE `colors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `founderdepartments`
+-- AUTO_INCREMENT for table `founderDepartments`
 --
-ALTER TABLE `founderdepartments`
+ALTER TABLE `founderDepartments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `foundertitles`
+-- AUTO_INCREMENT for table `founderTitles`
 --
-ALTER TABLE `foundertitles`
+ALTER TABLE `founderTitles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
@@ -510,8 +510,8 @@ ALTER TABLE `items`
   ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`modelId`) REFERENCES `models` (`id`),
   ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`locationId`) REFERENCES `locations` (`id`),
-  ADD CONSTRAINT `items_ibfk_4` FOREIGN KEY (`founderTitleId`) REFERENCES `foundertitles` (`id`),
-  ADD CONSTRAINT `items_ibfk_5` FOREIGN KEY (`founderDepartmentId`) REFERENCES `founderdepartments` (`id`),
+  ADD CONSTRAINT `items_ibfk_4` FOREIGN KEY (`founderTitleId`) REFERENCES `founderTitles` (`id`),
+  ADD CONSTRAINT `items_ibfk_5` FOREIGN KEY (`founderDepartmentId`) REFERENCES `founderDepartments` (`id`),
   ADD CONSTRAINT `items_ibfk_6` FOREIGN KEY (`colorId`) REFERENCES `colors` (`id`),
   ADD CONSTRAINT `items_ibfk_7` FOREIGN KEY (`airportId`) REFERENCES `airports` (`id`),
   ADD CONSTRAINT `items_ibfk_8` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
